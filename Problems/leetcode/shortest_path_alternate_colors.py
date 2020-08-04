@@ -6,19 +6,19 @@ class Solution:
     red_hash = {}
     blue_hash = {}
 
+    def __init__(self):
+        self.red_hash = {}
+        self.blue_hash = {}
+
     def shortestAlternatingPaths(self, n, red_edges, blue_edges):
         for i in red_edges:
             if i[0] in self.red_hash:
-                arr = self.red_hash.get(i[0])
-                arr.append(i[1])
-                self.red_hash[i[0]] = arr
+                self.red_hash.get(i[0]).append(i[1])
             else:
                 self.red_hash[i[0]] = [i[1]]
         for i in blue_edges:
             if i[0] in self.blue_hash:
-                arr = self.blue_hash.get([i[0]])
-                arr.append(i[1])
-                self.blue_hash[i[0]] = arr
+                self.blue_hash.get([i[0]]).append(i[1])
             else:
                 self.blue_hash[i[0]] = [i[1]]
         print("red_hash:", self.red_hash)
@@ -69,12 +69,12 @@ class Solution:
 
 # Driver code
 if __name__ == '__main__':
-    # n = 3
-    # red_edges = [[0, 1], [1, 2]]
-    # blue_edges = []
-    n = 5
-    red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
-
-    blue_edges =[[1, 2], [2, 3], [3, 1]]
+    n = 3
+    red_edges = [[0, 1], [0, 2]]
+    blue_edges = [[1, 0]]
+    # n = 5
+    # red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
+    #
+    # blue_edges =[[1, 2], [2, 3], [3, 1]]
     s = Solution()
     s.shortestAlternatingPaths(n, red_edges, blue_edges)
