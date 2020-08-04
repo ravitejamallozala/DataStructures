@@ -25,8 +25,8 @@ class Solution:
         print("blue hash:", self.blue_hash)
         answer = []
         for x in range(n):
-            red = self.shortest_path(x, 0, [False] * n, "R")
-            blue = self.shortest_path(x, 0, [False] * n, "B")
+            red = self.shortest_path(x, 0, None, {}, "R")
+            blue = self.shortest_path(x, 0, None, {}, "B")
             if red is not None and blue is not None:
                 answer.append(min(red, blue))
             elif red is not None:
@@ -38,18 +38,22 @@ class Solution:
             print("main ans ", x, ": ", answer[x])
         return answer
 
-    def shortest_path(self, x, curr, visited, in_hash):
+    def shortest_path(self, x, curr, from_node, visited, in_hash):
         if x == curr:
             return 0
-        if visited[curr] is True:
-            return
-        visited[curr] = True
+        if curr in visited:
+            if from_node in visited[curr]:
+                return
+            else:
+                visited[curr].append(from_node)
+        else:
+            visited[curr] = [from_node]
         if in_hash == "R":
             if curr in self.red_hash:
                 vals = self.red_hash.get(curr)
                 ans = []
                 for val in vals:
-                    res = self.shortest_path(x, val, visited, "B")
+                    res = self.shortest_path(x, val, curr, visited, "B")
                     if res is not None:
                         ans.append(1 + res)
                 return min(ans) if ans else None
@@ -59,7 +63,7 @@ class Solution:
                 vals = self.blue_hash.get(curr)
                 ans = []
                 for val in vals:
-                    res = self.shortest_path(x, val, visited, "R")
+                    res = self.shortest_path(x, val, curr, visited, "R")
                     if res is not None:
                         ans.append(1 + res)
                 return min(ans) if ans else None
@@ -69,12 +73,20 @@ class Solution:
 
 # Driver code
 if __name__ == '__main__':
-    n = 3
-    red_edges = [[0, 1], [0, 2]]
-    blue_edges = [[1, 0]]
+    # n = 3
+    # red_edges = [[0, 1], [0, 2]]
+    # blue_edges = [[1, 0]]
     # n = 5
     # red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
     #
     # blue_edges =[[1, 2], [2, 3], [3, 1]]
+
+    # n = 3
+    # red_edges = [[0, 1], [1, 2]]
+    # blue_edges = []
+    n = 5
+    red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
+
+    blue_edges = [[1, 2], [2, 3], [3, 1]]
     s = Solution()
     s.shortestAlternatingPaths(n, red_edges, blue_edges)
