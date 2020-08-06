@@ -1,6 +1,8 @@
 # 1129. Shortest Path with Alternating Colors
 # Graphs
 
+# Add color in Visited Node to check
+
 
 class Solution:
     red_hash = {}
@@ -18,7 +20,7 @@ class Solution:
                 self.red_hash[i[0]] = [i[1]]
         for i in blue_edges:
             if i[0] in self.blue_hash:
-                self.blue_hash.get([i[0]]).append(i[1])
+                self.blue_hash.get(i[0]).append(i[1])
             else:
                 self.blue_hash[i[0]] = [i[1]]
         print("red_hash:", self.red_hash)
@@ -42,12 +44,12 @@ class Solution:
         if x == curr:
             return 0
         if curr in visited:
-            if from_node in visited[curr]:
+            if str(from_node) + in_hash in visited[curr]:
                 return
             else:
-                visited[curr].append(from_node)
+                visited[curr].append(str(from_node) + in_hash)
         else:
-            visited[curr] = [from_node]
+            visited[curr] = [str(from_node) + in_hash]
         if in_hash == "R":
             if curr in self.red_hash:
                 vals = self.red_hash.get(curr)
@@ -67,8 +69,6 @@ class Solution:
                     if res is not None:
                         ans.append(1 + res)
                 return min(ans) if ans else None
-            # else:
-            #     return -1000
 
 
 # Driver code
@@ -80,13 +80,16 @@ if __name__ == '__main__':
     # red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
     #
     # blue_edges =[[1, 2], [2, 3], [3, 1]]
+    # n = 5
+    # red_edges = [[1, 4], [0, 3]]
+    # blue_edges = [[3, 1], [3, 4]]
 
-    # n = 3
-    # red_edges = [[0, 1], [1, 2]]
-    # blue_edges = []
+    # n = 5
+    # red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
+    #
+    # blue_edges = [[1, 2], [2, 3], [3, 1]]
     n = 5
-    red_edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
-
-    blue_edges = [[1, 2], [2, 3], [3, 1]]
+    red_edges = [[2, 2], [0, 1], [0, 3], [0, 0], [0, 4], [2, 1], [2, 0], [1, 4], [3, 4]]
+    blue_edges = [[1, 3], [0, 0], [0, 3], [4, 2], [1, 0]]
     s = Solution()
     s.shortestAlternatingPaths(n, red_edges, blue_edges)
