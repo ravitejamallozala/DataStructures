@@ -1,5 +1,5 @@
 #   Vertical Order Traversal of a Binary Tree
-# AUG 8th  
+# AUG 8th
 
 # Definition for a binary tree node.
 # class TreeNode:
