@@ -1,5 +1,5 @@
 '''
-Intersection of Two Arrays
+Intersection of Two Linkedlists
 
 Given two arrays, write a function to compute their intersection.
 

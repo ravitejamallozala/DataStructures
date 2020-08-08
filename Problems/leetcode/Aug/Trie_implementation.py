@@ -1,6 +1,23 @@
 """
  Add and Search Word - Data structure design
  AUG Week 1
+Design a data structure that supports the following two operations:
+
+void addWord(word)
+bool search(word)
+search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
+
+Example:
+
+addWord("bad")
+addWord("dad")
+addWord("mad")
+search("pad") -> false
+search("bad") -> true
+search(".ad") -> true
+search("b..") -> true
+Note:
+You may assume that all words are consist of lowercase letters a-z.
 """
 
 
@@ -89,7 +106,7 @@ if __name__ == '__main__':
     # obj.addWord("bafs")
     # obj.addWord("mad")
     # ["WordDictionary", "addWord", "addWord", "search", "search", "search", "search", "search", "search"]
-                                # [[], ["a"], ["a"], ["."], ["a"], ["aa"], ["a"], [".a"], ["a."]]
+    # [[], ["a"], ["a"], ["."], ["a"], ["aa"], ["a"], [".a"], ["a."]]
     # print(obj.search("a"))  # -> false
     # print(obj.search("a"))  # -> true
     # print(obj.search(".ad"))  # -> true
