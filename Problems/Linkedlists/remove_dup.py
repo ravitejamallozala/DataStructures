@@ -36,11 +36,11 @@ class Solution:
         temp = head
         prev = None
         while (temp):
-            if temp.data in ele:
+            if temp.data_Arr in ele:
                 temp = temp.next
                 prev.next = temp
             else:
-                ele.add(temp.data)
+                ele.add(temp.data_Arr)
                 prev = temp
                 temp = temp.next
         return head
@@ -97,7 +97,7 @@ class LinkedList:
             return
         curr_node = self.head
         while curr_node:
-            print(curr_node.data, end=" ")
+            print(curr_node.data_Arr, end=" ")
             curr_node = curr_node.next
         print(' ')
 
